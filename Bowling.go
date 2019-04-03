@@ -18,7 +18,12 @@ func BowlingGame (game Game) int {
 
 		if i < 8 { 								//normal frames
 			if isStrike(frame){
-				frameBonus = game.frames[i+1].ball1 + game.frames[i+2].ball1
+				frameBonus = game.frames[i+1].ball1
+				if isStrike(game.frames[i+1]) {
+					frameBonus += game.frames[i+2].ball1
+				} else {
+					frameBonus += game.frames[i+1].ball2
+				}
 			} else if isSpare(frame){
 				frameBonus = game.frames[i+1].ball1
 			}

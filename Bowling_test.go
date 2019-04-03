@@ -75,15 +75,15 @@ func TestGame150(t *testing.T) {
 	}
 }
 
-	func TestGame105(t *testing.T) {
+	func TestGame123(t *testing.T) {
 		game := Game{
 			frames: [10]Frame{
 				Frame{10, 0}, 	//20
 				Frame{5, 5},		//40
 				Frame{10, 0},		//70
 				Frame{10, 0},		//95
-				Frame{10, 0},		//105
-				Frame{0, 0},
+				Frame{10, 0},		//114
+				Frame{5, 4},		//123
 				Frame{0, 0},
 				Frame{0, 0},
 				Frame{0, 0},
@@ -93,7 +93,7 @@ func TestGame150(t *testing.T) {
 			bonus2: 0,
 		}
 		got := BowlingGame(game)
-		want := 105
+		want := 123
 
 		if (got != want) {
 			t.Errorf("got '%d' want '%d'", got, want)
