@@ -1,9 +1,7 @@
 package bowling
 
 type Game struct {
-	frames [10]Frame
-	bonus1 int
-	bonus2 int
+	frames [12]Frame
 }
 
 type Frame struct {
@@ -13,33 +11,21 @@ type Frame struct {
 
 func BowlingGame (game Game) int {
 	var score = 0
-	for i, frame := range game.frames {
+	for i := 0; i < 10; i++ {
+		var frame = game.frames[i]
 		var frameBonus = 0
 
-		if i < 8 { 								//normal frames
-			if isStrike(frame){
-				frameBonus = game.frames[i+1].ball1
-				if isStrike(game.frames[i+1]) {
-					frameBonus += game.frames[i+2].ball1
-				} else {
-					frameBonus += game.frames[i+1].ball2
-				}
-			} else if isSpare(frame){
-				frameBonus = game.frames[i+1].ball1
+		if isStrike(frame){
+			frameBonus = game.frames[i+1].ball1
+			if isStrike(game.frames[i+1]) {
+				frameBonus += game.frames[i+2].ball1
+			} else {
+				frameBonus += game.frames[i+1].ball2
 			}
-		} else if i == 8 {						//second to last
-			if isStrike(frame) {
-				frameBonus = game.frames[i+1].ball1 + game.bonus1
-			} else if isSpare(frame) {
-				frameBonus = game.frames[i+1].ball1
-			}
-		} else if i == 9 {						//last
-			if isStrike(frame) {
-				frameBonus = game.bonus1 + game.bonus2
-			} else if isSpare(frame){
-				frameBonus = game.bonus1
-			}
+		} else if isSpare(frame){
+			frameBonus = game.frames[i+1].ball1
 		}
+
 		score += frame.ball1 + frame.ball2 + frameBonus
 	}
 	return score

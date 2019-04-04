@@ -4,7 +4,7 @@ import "testing"
 
 func TestGame90(t *testing.T) {
 	game := Game{
-		frames: [10]Frame{
+		frames: [12]Frame{
 			Frame{9, 0},
 			Frame{9, 0},
 			Frame{9, 0},
@@ -15,6 +15,8 @@ func TestGame90(t *testing.T) {
 			Frame{9, 0},
 			Frame{9, 0},
 			Frame{9, 0},
+			Frame{0, 0},
+			Frame{0, 0},
 		},
 	}
 	got := BowlingGame(game)
@@ -27,7 +29,9 @@ func TestGame90(t *testing.T) {
 
 func TestGame300(t *testing.T) {
 	game := Game{
-		 frames: [10]Frame{
+		 frames: [12]Frame{
+			Frame{10, 0},
+			Frame{10, 0},
 			Frame{10, 0},
 			Frame{10, 0},
 			Frame{10, 0},
@@ -39,8 +43,6 @@ func TestGame300(t *testing.T) {
 			Frame{10, 0},
 			Frame{10, 0},
 		},
-		bonus1: 10,
-		bonus2: 10,
 	}
 	got := BowlingGame(game)
 	want := 300
@@ -52,7 +54,7 @@ func TestGame300(t *testing.T) {
 
 func TestGame150(t *testing.T) {
 	game := Game{
-		frames: [10]Frame{
+		frames: [12]Frame{
 			Frame{5, 5},
 			Frame{5, 5},
 			Frame{5, 5},
@@ -63,9 +65,9 @@ func TestGame150(t *testing.T) {
 			Frame{5, 5},
 			Frame{5, 5},
 			Frame{5, 5},
+			Frame{5, 5},
+			Frame{0, 0},
 		},
-		bonus1: 5,
-		bonus2: 0,
 	}
 	got := BowlingGame(game)
 	want := 150
@@ -77,7 +79,7 @@ func TestGame150(t *testing.T) {
 
 	func TestGame123(t *testing.T) {
 		game := Game{
-			frames: [10]Frame{
+			frames: [12]Frame{
 				Frame{10, 0}, 	//20
 				Frame{5, 5},		//40
 				Frame{10, 0},		//70
@@ -88,9 +90,9 @@ func TestGame150(t *testing.T) {
 				Frame{0, 0},
 				Frame{0, 0},
 				Frame{0, 0},
+				Frame{0, 0},
+				Frame{0, 0},
 			},
-			bonus1: 0,
-			bonus2: 0,
 		}
 		got := BowlingGame(game)
 		want := 123
