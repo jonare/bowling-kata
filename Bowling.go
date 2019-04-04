@@ -9,32 +9,32 @@ type Frame struct {
 	ball2 int
 }
 
+func (frame *Frame) isStrike() bool {							//"attach methods to types ~= objektorientering
+	return frame.ball1 == 10
+}
+
+func (frame *Frame) isSpare() bool {
+	return !frame.isStrike() && frame.ball1 + frame.ball2 == 10
+}
+
 func BowlingGame (game Game) int {
 	var score = 0
 	for i := 0; i < 10; i++ {
 		var frame = game.frames[i]
 		var frameBonus = 0
 
-		if isStrike(frame){
+		if frame.isStrike(){
 			frameBonus = game.frames[i+1].ball1
-			if isStrike(game.frames[i+1]) {
+			if game.frames[i+1].isStrike(){
 				frameBonus += game.frames[i+2].ball1
 			} else {
 				frameBonus += game.frames[i+1].ball2
 			}
-		} else if isSpare(frame){
+		} else if frame.isSpare(){
 			frameBonus = game.frames[i+1].ball1
 		}
 
 		score += frame.ball1 + frame.ball2 + frameBonus
 	}
 	return score
-}
-
-func isStrike(frame Frame) bool {
-	return frame.ball1 == 10
-}
-
-func isSpare(frame Frame) bool {
-	return !isStrike(frame) && frame.ball1 + frame.ball2 == 10
 }
